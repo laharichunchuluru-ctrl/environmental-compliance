@@ -9,6 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -460,12 +461,16 @@ td{
     margin-top:4px;
 }
 
+/* FUNCTIONAL TOGGLE */
 .toggle{
     width:42px;
     height:22px;
-    background:#19d995;
+    background:#3a4659;
     border-radius:20px;
     position:relative;
+    cursor:pointer;
+    transition:0.25s ease;
+    flex-shrink:0;
 }
 
 .toggle::after{
@@ -476,7 +481,16 @@ td{
     background:white;
     border-radius:50%;
     top:2.5px;
-    right:3px;
+    left:3px;
+    transition:0.25s ease;
+}
+
+.toggle.active{
+    background:#19d995;
+}
+
+.toggle.active::after{
+    left:22px;
 }
 
 /* INSIGHTS */
@@ -557,6 +571,7 @@ footer{
         grid-template-columns:1fr;
     }
 }
+
 </style>
 </head>
 
@@ -656,87 +671,38 @@ footer{
 </header>
 
 
-<!-- ======================================================
-                        OVERVIEW
-====================================================== -->
+<!-- ================= OVERVIEW ================= -->
 
 <section id="overview" class="page active">
 
 <div class="cards">
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Total Monitoring Records
-        </div>
-
-        <div class="card-value">
-            12
-        </div>
-
-        <div class="card-sub">
-            Environmental observations
-        </div>
-
+        <div class="card-title">Total Monitoring Records</div>
+        <div class="card-value">12</div>
+        <div class="card-sub">Environmental observations</div>
         <div class="card-icon">📊</div>
-
     </div>
-
 
     <div class="card blue-border">
-
-        <div class="card-title">
-            Overall Compliance
-        </div>
-
-        <div class="card-value">
-            50%
-        </div>
-
-        <div class="card-sub">
-            Current compliance rate
-        </div>
-
+        <div class="card-title">Overall Compliance</div>
+        <div class="card-value">50%</div>
+        <div class="card-sub">Current compliance rate</div>
         <div class="card-icon">✓</div>
-
     </div>
-
 
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Average Air Quality
-        </div>
-
-        <div class="card-value">
-            91.3
-        </div>
-
-        <div class="card-sub">
-            Permissible limit: 100
-        </div>
-
+        <div class="card-title">Average Air Quality</div>
+        <div class="card-value">91.3</div>
+        <div class="card-sub">Permissible limit: 100</div>
         <div class="card-icon">☁</div>
-
     </div>
 
-
     <div class="card red-border">
-
-        <div class="card-title">
-            Non-Compliant
-        </div>
-
-        <div class="card-value">
-            6
-        </div>
-
-        <div class="card-sub">
-            Records requiring attention
-        </div>
-
+        <div class="card-title">Non-Compliant</div>
+        <div class="card-value">6</div>
+        <div class="card-sub">Records requiring attention</div>
         <div class="card-icon">⚠</div>
-
     </div>
 
 </div>
@@ -744,24 +710,17 @@ footer{
 
 <div class="grid-2">
 
-    <!-- DONUT -->
-
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Compliance Overview</h2>
-
             <span>Current Status</span>
-
         </div>
 
         <div class="compliance-box">
 
             <div class="donut-container">
-
                 <canvas id="overviewDonut"></canvas>
-
             </div>
 
             <div class="compliance-info">
@@ -788,16 +747,11 @@ footer{
     </div>
 
 
-    <!-- PARAMETER CHART -->
-
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Environmental Parameters</h2>
-
             <span>Average Values</span>
-
         </div>
 
         <canvas id="parameterChart"></canvas>
@@ -807,16 +761,11 @@ footer{
 </div>
 
 
-<!-- TREND -->
-
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Environmental Monitoring Trends</h2>
-
         <span>Monthly Analysis</span>
-
     </div>
 
     <canvas id="trendChart"></canvas>
@@ -824,23 +773,16 @@ footer{
 </div>
 
 
-<!-- PROGRESS + ALERTS -->
-
 <div class="grid-2">
 
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Parameter Compliance</h2>
-
             <span>Percentage</span>
-
         </div>
 
-
         <div class="metric">
-
             <div class="metric-head">
                 <span>Air Quality</span>
                 <strong>75%</strong>
@@ -849,12 +791,9 @@ footer{
             <div class="progress">
                 <div class="progress-bar pg-green" style="width:75%"></div>
             </div>
-
         </div>
 
-
         <div class="metric">
-
             <div class="metric-head">
                 <span>Water Quality</span>
                 <strong>100%</strong>
@@ -863,12 +802,9 @@ footer{
             <div class="progress">
                 <div class="progress-bar pg-blue" style="width:100%"></div>
             </div>
-
         </div>
 
-
         <div class="metric">
-
             <div class="metric-head">
                 <span>Noise Monitoring</span>
                 <strong>67%</strong>
@@ -877,12 +813,9 @@ footer{
             <div class="progress">
                 <div class="progress-bar pg-yellow" style="width:67%"></div>
             </div>
-
         </div>
 
-
         <div class="metric">
-
             <div class="metric-head">
                 <span>Emission Monitoring</span>
                 <strong>75%</strong>
@@ -891,7 +824,6 @@ footer{
             <div class="progress">
                 <div class="progress-bar pg-green" style="width:75%"></div>
             </div>
-
         </div>
 
     </div>
@@ -900,11 +832,8 @@ footer{
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Compliance Alerts</h2>
-
             <span>Attention Required</span>
-
         </div>
 
         <div class="alert">
@@ -942,53 +871,37 @@ footer{
 </div>
 
 
-<!-- INSIGHTS -->
-
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Environmental Insights</h2>
-
         <span>System Analysis</span>
-
     </div>
 
     <div class="insight-grid">
 
         <div class="insight">
-
             <h3>🌱 Water Quality</h3>
-
             <p>
                 Water pH values remain within the acceptable
                 monitoring range.
             </p>
-
         </div>
 
-
         <div class="insight">
-
             <h3>☁ Air Quality</h3>
-
             <p>
                 Some air quality readings exceed the permissible
                 threshold and require attention.
             </p>
-
         </div>
 
-
         <div class="insight">
-
             <h3>♻ Environmental Risk</h3>
-
             <p>
                 Overall environmental compliance is currently
                 classified as moderate risk.
             </p>
-
         </div>
 
     </div>
@@ -998,20 +911,15 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                    ENVIRONMENTAL DATA
-====================================================== -->
+<!-- ================= ENVIRONMENTAL DATA ================= -->
 
 <section id="data" class="page">
 
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Environmental Monitoring Dataset</h2>
-
         <span>12 Records</span>
-
     </div>
 
     <div class="table-container">
@@ -1019,9 +927,7 @@ footer{
     <table>
 
         <thead>
-
             <tr>
-
                 <th>LOCATION</th>
                 <th>MONTH</th>
                 <th>AIR</th>
@@ -1029,9 +935,7 @@ footer{
                 <th>NOISE</th>
                 <th>EMISSION</th>
                 <th>STATUS</th>
-
             </tr>
-
         </thead>
 
         <tbody>
@@ -1167,79 +1071,34 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                        AIR QUALITY
-====================================================== -->
+<!-- ================= AIR QUALITY ================= -->
 
 <section id="air" class="page">
 
 <div class="cards">
 
     <div class="card blue-border">
-
-        <div class="card-title">
-            Average Air Quality
-        </div>
-
-        <div class="card-value">
-            91.3
-        </div>
-
-        <div class="card-sub">
-            Permissible limit: 100
-        </div>
-
+        <div class="card-title">Average Air Quality</div>
+        <div class="card-value">91.3</div>
+        <div class="card-sub">Permissible limit: 100</div>
     </div>
-
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Minimum
-        </div>
-
-        <div class="card-value">
-            68
-        </div>
-
-        <div class="card-sub">
-            Lowest recorded
-        </div>
-
+        <div class="card-title">Minimum</div>
+        <div class="card-value">68</div>
+        <div class="card-sub">Lowest recorded</div>
     </div>
-
 
     <div class="card red-border">
-
-        <div class="card-title">
-            Maximum
-        </div>
-
-        <div class="card-value">
-            115
-        </div>
-
-        <div class="card-sub">
-            Above permissible limit
-        </div>
-
+        <div class="card-title">Maximum</div>
+        <div class="card-value">115</div>
+        <div class="card-sub">Above permissible limit</div>
     </div>
 
-
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Compliance
-        </div>
-
-        <div class="card-value">
-            75%
-        </div>
-
-        <div class="card-sub">
-            Current status
-        </div>
-
+        <div class="card-title">Compliance</div>
+        <div class="card-value">75%</div>
+        <div class="card-sub">Current status</div>
     </div>
 
 </div>
@@ -1248,11 +1107,8 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Air Quality Trend</h2>
-
         <span>Limit = 100</span>
-
     </div>
 
     <canvas id="airChart"></canvas>
@@ -1263,9 +1119,7 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Air Quality Assessment</h2>
-
     </div>
 
     <div class="alert">
@@ -1294,79 +1148,34 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                       WATER QUALITY
-====================================================== -->
+<!-- ================= WATER QUALITY ================= -->
 
 <section id="water" class="page">
 
 <div class="cards">
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Average pH
-        </div>
-
-        <div class="card-value">
-            7.35
-        </div>
-
-        <div class="card-sub">
-            Normal range
-        </div>
-
+        <div class="card-title">Average pH</div>
+        <div class="card-value">7.35</div>
+        <div class="card-sub">Normal range</div>
     </div>
-
 
     <div class="card blue-border">
-
-        <div class="card-title">
-            Minimum pH
-        </div>
-
-        <div class="card-value">
-            6.9
-        </div>
-
-        <div class="card-sub">
-            Recorded minimum
-        </div>
-
+        <div class="card-title">Minimum pH</div>
+        <div class="card-value">6.9</div>
+        <div class="card-sub">Recorded minimum</div>
     </div>
 
-
     <div class="card green-border">
-
-        <div class="card-title">
-            Maximum pH
-        </div>
-
-        <div class="card-value">
-            8.0
-        </div>
-
-        <div class="card-sub">
-            Recorded maximum
-        </div>
-
+        <div class="card-title">Maximum pH</div>
+        <div class="card-value">8.0</div>
+        <div class="card-sub">Recorded maximum</div>
     </div>
 
-
     <div class="card green-border">
-
-        <div class="card-title">
-            Compliance
-        </div>
-
-        <div class="card-value">
-            100%
-        </div>
-
-        <div class="card-sub">
-            Within range
-        </div>
-
+        <div class="card-title">Compliance</div>
+        <div class="card-value">100%</div>
+        <div class="card-sub">Within range</div>
     </div>
 
 </div>
@@ -1375,11 +1184,8 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Water Quality Trend</h2>
-
         <span>Acceptable pH: 6.5–8.5</span>
-
     </div>
 
     <canvas id="waterChart"></canvas>
@@ -1405,79 +1211,34 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                       NOISE
-====================================================== -->
+<!-- ================= NOISE ================= -->
 
 <section id="noise" class="page">
 
 <div class="cards">
 
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Average Noise
-        </div>
-
-        <div class="card-value">
-            67.3
-        </div>
-
-        <div class="card-sub">
-            Monitoring average
-        </div>
-
+        <div class="card-title">Average Noise</div>
+        <div class="card-value">67.3</div>
+        <div class="card-sub">Monitoring average</div>
     </div>
-
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Minimum
-        </div>
-
-        <div class="card-value">
-            60
-        </div>
-
-        <div class="card-sub">
-            Lowest level
-        </div>
-
+        <div class="card-title">Minimum</div>
+        <div class="card-value">60</div>
+        <div class="card-sub">Lowest level</div>
     </div>
-
 
     <div class="card red-border">
-
-        <div class="card-title">
-            Maximum
-        </div>
-
-        <div class="card-value">
-            75
-        </div>
-
-        <div class="card-sub">
-            Above limit
-        </div>
-
+        <div class="card-title">Maximum</div>
+        <div class="card-value">75</div>
+        <div class="card-sub">Above limit</div>
     </div>
 
-
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Compliance
-        </div>
-
-        <div class="card-value">
-            67%
-        </div>
-
-        <div class="card-sub">
-            Current status
-        </div>
-
+        <div class="card-title">Compliance</div>
+        <div class="card-value">67%</div>
+        <div class="card-sub">Current status</div>
     </div>
 
 </div>
@@ -1486,11 +1247,8 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Noise Monitoring Trend</h2>
-
         <span>Limit = 70</span>
-
     </div>
 
     <canvas id="noiseChart"></canvas>
@@ -1516,79 +1274,34 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                       EMISSION
-====================================================== -->
+<!-- ================= EMISSION ================= -->
 
 <section id="emission" class="page">
 
 <div class="cards">
 
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Average Emission
-        </div>
-
-        <div class="card-value">
-            45.4
-        </div>
-
-        <div class="card-sub">
-            Monitoring average
-        </div>
-
+        <div class="card-title">Average Emission</div>
+        <div class="card-value">45.4</div>
+        <div class="card-sub">Monitoring average</div>
     </div>
-
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Minimum
-        </div>
-
-        <div class="card-value">
-            35
-        </div>
-
-        <div class="card-sub">
-            Lowest value
-        </div>
-
+        <div class="card-title">Minimum</div>
+        <div class="card-value">35</div>
+        <div class="card-sub">Lowest value</div>
     </div>
-
 
     <div class="card red-border">
-
-        <div class="card-title">
-            Maximum
-        </div>
-
-        <div class="card-value">
-            58
-        </div>
-
-        <div class="card-sub">
-            Above limit
-        </div>
-
+        <div class="card-title">Maximum</div>
+        <div class="card-value">58</div>
+        <div class="card-sub">Above limit</div>
     </div>
 
-
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Compliance
-        </div>
-
-        <div class="card-value">
-            75%
-        </div>
-
-        <div class="card-sub">
-            Current status
-        </div>
-
+        <div class="card-title">Compliance</div>
+        <div class="card-value">75%</div>
+        <div class="card-sub">Current status</div>
     </div>
 
 </div>
@@ -1597,11 +1310,8 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Emission Monitoring Trend</h2>
-
         <span>Limit = 50</span>
-
     </div>
 
     <canvas id="emissionChart"></canvas>
@@ -1627,79 +1337,34 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                    COMPLIANCE ANALYSIS
-====================================================== -->
+<!-- ================= COMPLIANCE ANALYSIS ================= -->
 
 <section id="compliance" class="page">
 
 <div class="cards">
 
     <div class="card green-border">
-
-        <div class="card-title">
-            Compliant Records
-        </div>
-
-        <div class="card-value">
-            6
-        </div>
-
-        <div class="card-sub">
-            50% of records
-        </div>
-
+        <div class="card-title">Compliant Records</div>
+        <div class="card-value">6</div>
+        <div class="card-sub">50% of records</div>
     </div>
-
 
     <div class="card red-border">
-
-        <div class="card-title">
-            Non-Compliant
-        </div>
-
-        <div class="card-value">
-            6
-        </div>
-
-        <div class="card-sub">
-            Requires attention
-        </div>
-
+        <div class="card-title">Non-Compliant</div>
+        <div class="card-value">6</div>
+        <div class="card-sub">Requires attention</div>
     </div>
-
 
     <div class="card blue-border">
-
-        <div class="card-title">
-            Overall Compliance
-        </div>
-
-        <div class="card-value">
-            50%
-        </div>
-
-        <div class="card-sub">
-            Current rate
-        </div>
-
+        <div class="card-title">Overall Compliance</div>
+        <div class="card-value">50%</div>
+        <div class="card-sub">Current rate</div>
     </div>
 
-
     <div class="card yellow-border">
-
-        <div class="card-title">
-            Risk Level
-        </div>
-
-        <div class="card-value">
-            Medium
-        </div>
-
-        <div class="card-sub">
-            Based on observations
-        </div>
-
+        <div class="card-title">Risk Level</div>
+        <div class="card-value">Medium</div>
+        <div class="card-sub">Based on observations</div>
     </div>
 
 </div>
@@ -1710,11 +1375,8 @@ footer{
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Compliance Distribution</h2>
-
             <span>Records</span>
-
         </div>
 
         <canvas id="complianceChart"></canvas>
@@ -1725,13 +1387,9 @@ footer{
     <div class="panel">
 
         <div class="panel-header">
-
             <h2>Parameter Compliance</h2>
-
             <span>Percentage</span>
-
         </div>
-
 
         <div class="metric">
 
@@ -1746,7 +1404,6 @@ footer{
 
         </div>
 
-
         <div class="metric">
 
             <div class="metric-head">
@@ -1760,7 +1417,6 @@ footer{
 
         </div>
 
-
         <div class="metric">
 
             <div class="metric-head">
@@ -1773,7 +1429,6 @@ footer{
             </div>
 
         </div>
-
 
         <div class="metric">
 
@@ -1795,20 +1450,15 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                         REPORTS
-====================================================== -->
+<!-- ================= REPORTS ================= -->
 
 <section id="reports" class="page">
 
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Environmental Compliance Report</h2>
-
         <span>Monitoring Summary</span>
-
     </div>
 
 
@@ -1862,20 +1512,15 @@ footer{
 </section>
 
 
-<!-- ======================================================
-                         SETTINGS
-====================================================== -->
+<!-- ================= SETTINGS ================= -->
 
 <section id="settings" class="page">
 
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>System Settings</h2>
-
         <span>Configuration</span>
-
     </div>
 
 
@@ -1891,7 +1536,7 @@ footer{
 
         </div>
 
-        <div class="toggle"></div>
+        <div class="toggle active" data-setting="alerts"></div>
 
     </div>
 
@@ -1908,7 +1553,7 @@ footer{
 
         </div>
 
-        <div class="toggle"></div>
+        <div class="toggle active" data-setting="monitoring"></div>
 
     </div>
 
@@ -1925,7 +1570,7 @@ footer{
 
         </div>
 
-        <div class="toggle"></div>
+        <div class="toggle active" data-setting="reports"></div>
 
     </div>
 
@@ -1935,9 +1580,7 @@ footer{
 <div class="panel">
 
     <div class="panel-header">
-
         <h2>Configured Environmental Limits</h2>
-
     </div>
 
     <div class="compliance-row">
@@ -2122,6 +1765,35 @@ document.addEventListener("DOMContentLoaded",function(){
             "Overall Compliance: 50%\n\n"+
             "Report generated successfully."
         );
+
+    });
+
+
+    /* ==================================================
+                     SETTINGS TOGGLES
+    ================================================== */
+
+    const toggles=document.querySelectorAll(".toggle");
+
+    toggles.forEach(function(toggle){
+
+        toggle.addEventListener("click",function(){
+
+            this.classList.toggle("active");
+
+            const settingName=this.dataset.setting;
+
+            if(this.classList.contains("active")){
+
+                console.log(settingName+" enabled");
+
+            }else{
+
+                console.log(settingName+" disabled");
+
+            }
+
+        });
 
     });
 
